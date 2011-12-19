@@ -11,8 +11,8 @@
 
 
 /* small helper functions */
-static void initialize_action_struct(action_struct * cur, VALUE hash_arg, sync sync_mode);
-static void process_common_hash_args(action_struct * cur, VALUE * hash_arg, sync sync_mode, bool primary);
+static void initialize_action_struct(action_struct * cur, VALUE hash_arg, texplay_sync sync_mode);
+static void process_common_hash_args(action_struct * cur, VALUE * hash_arg, texplay_sync sync_mode, bool primary);
 static void prepare_drawing_mode(action_struct * cur);
 static void prepare_alpha_blend(action_struct * cur);
 static void prepare_fill_texture(action_struct * cur);
@@ -81,7 +81,7 @@ set_local_bounds(action_struct * cur, int xmin, int ymin, int xmax, int ymax, te
 
 void
 draw_prologue(action_struct * cur, texture_info * tex, int xmin, int ymin, int xmax, int ymax,
-              VALUE * hash_arg, sync sync_mode, bool primary, action_struct ** payload_ptr)
+              VALUE * hash_arg, texplay_sync sync_mode, bool primary, action_struct ** payload_ptr)
 {
     if(!primary) return;
 
@@ -334,7 +334,7 @@ create_image(VALUE window, int width, int height)
 
 /* static functions */
 static void
-initialize_action_struct(action_struct * cur, VALUE hash_arg, sync sync_mode)
+initialize_action_struct(action_struct * cur, VALUE hash_arg, texplay_sync sync_mode)
 {
     /* initialize action-struct to default values */
     cur->sync_mode = sync_mode;
@@ -379,7 +379,7 @@ initialize_action_struct(action_struct * cur, VALUE hash_arg, sync sync_mode)
     
 /* TODO: fix this function below, it's too ugly and bulky and weird **/
 static void
-process_common_hash_args(action_struct * cur, VALUE * hash_arg, sync sync_mode, bool primary)
+process_common_hash_args(action_struct * cur, VALUE * hash_arg, texplay_sync sync_mode, bool primary)
 {
     
     VALUE user_defaults;  

@@ -38,7 +38,7 @@ is_trace_match(action_struct * cur, rgba c, rgba trace_color, trace_mode_type tr
 
 trace_match
 line_do_action(int x1, int y1, int x2, int y2, texture_info * tex, VALUE hash_arg,
-               sync sync_mode, bool primary, action_struct * payload)
+               texplay_sync sync_mode, bool primary, action_struct * payload)
 {
     int x, y, W, H, F;
     int xinc, yinc;
@@ -205,7 +205,7 @@ polyline_point(VALUE points, int k, int * x, int * y, int format, int draw_offse
         
 void
 polyline_do_action(VALUE points, texture_info * tex, VALUE hash_arg,
-                   sync sync_mode, bool primary, action_struct * payload)
+                   texplay_sync sync_mode, bool primary, action_struct * payload)
 {
 
     int x1, y1, x2, y2;
@@ -282,7 +282,7 @@ polyline_do_action(VALUE points, texture_info * tex, VALUE hash_arg,
 /* regular polygon algorithm */
 void
 ngon_do_action(int x, int y, int r, int num_sides, texture_info * tex, VALUE hash_arg,
-               sync sync_mode, bool primary, action_struct * payload)
+               texplay_sync sync_mode, bool primary, action_struct * payload)
 {
     action_struct cur;
     int x1, y1, x2, y2, x0, y0;
@@ -331,7 +331,7 @@ ngon_do_action(int x, int y, int r, int num_sides, texture_info * tex, VALUE has
 /** rectangle algorithm **/
 void
 rect_do_action(int x1, int y1, int x2, int y2, texture_info * tex, VALUE hash_arg,
-               sync sync_mode, bool primary, action_struct * payload)
+               texplay_sync sync_mode, bool primary, action_struct * payload)
 {
     action_struct cur;
     bool fill = false;
@@ -384,7 +384,7 @@ rect_do_action(int x1, int y1, int x2, int y2, texture_info * tex, VALUE hash_ar
 /** midpoint circle algorithm **/
 void
 circle_do_action(int x1, int y1, int r, texture_info * tex, VALUE hash_arg,
-                 sync sync_mode, bool primary, action_struct * payload)
+                 texplay_sync sync_mode, bool primary, action_struct * payload)
 {
 
     int x, y;
@@ -458,7 +458,7 @@ circle_do_action(int x1, int y1, int r, texture_info * tex, VALUE hash_arg,
 /** set pixel  algorithm **/
 void
 pixel_do_action(int x1, int y1, texture_info * tex, VALUE hash_arg,
-                sync sync_mode, bool primary, action_struct * payload)
+                texplay_sync sync_mode, bool primary, action_struct * payload)
 {
     action_struct cur;
 
@@ -484,7 +484,7 @@ typedef struct { int x1, x2, y, dy; } LINESEGMENT;
 
 void
 flood_fill_do_action(int x, int y, texture_info * tex, VALUE hash_arg,
-                     sync sync_mode, bool primary, action_struct * payload)
+                     texplay_sync sync_mode, bool primary, action_struct * payload)
 {
     int left, x1, x2, dy;
     rgba old_color;
@@ -607,7 +607,7 @@ glow_floodFill( int x, int y, rgba * seed_color, action_struct * cur, texture_in
 
 void
 glow_fill_do_action(int x, int y, texture_info * tex, VALUE hash_arg,
-                    sync sync_mode, bool primary, action_struct * payload)
+                    texplay_sync sync_mode, bool primary, action_struct * payload)
 {
     action_struct cur;
     rgba seed_color;
@@ -685,7 +685,7 @@ emptyStack()
 
 void
 scan_fill_do_action(int x, int y, texture_info * tex, VALUE hash_arg,
-                    sync sync_mode, bool primary, action_struct * payload)
+                    texplay_sync sync_mode, bool primary, action_struct * payload)
 {
     action_struct cur;
     rgba old_color;
@@ -783,7 +783,7 @@ bezier_point(VALUE points, float u, float * x, float * y, int n, int format,
 }
 
 void
-bezier_do_action(VALUE points, texture_info * tex, VALUE hash_arg, sync sync_mode,
+bezier_do_action(VALUE points, texture_info * tex, VALUE hash_arg, texplay_sync sync_mode,
                  bool primary, action_struct * payload)
 {
     float u = 0.0;
@@ -893,7 +893,7 @@ set_color_array(VALUE ary, rgba * color)
     
 void
 each_pixel_do_action(int x1, int y1, int x2, int y2, VALUE proc, texture_info * tex, VALUE hash_arg,
-                     sync sync_mode, bool primary, action_struct * payload)
+                     texplay_sync sync_mode, bool primary, action_struct * payload)
 {
     action_struct cur;
     int arity;
@@ -935,7 +935,7 @@ each_pixel_do_action(int x1, int y1, int x2, int y2, VALUE proc, texture_info * 
 /** splice algorithm **/
 void
 splice_do_action(int x0, int y0, int cx1, int cy1, int cx2, int cy2, texture_info * splice_tex,
-                 texture_info * tex, VALUE hash_arg, sync sync_mode,
+                 texture_info * tex, VALUE hash_arg, texplay_sync sync_mode,
                  bool primary, action_struct * payload)
 {
     action_struct cur;

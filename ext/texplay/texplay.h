@@ -38,7 +38,7 @@ typedef enum e_color {
 
 typedef enum e_sync_mode {
   lazy_sync, eager_sync, no_sync
-} sync;
+} texplay_sync;
 
 
 typedef enum {
@@ -93,7 +93,7 @@ typedef struct {
 
 typedef struct action_struct {
   int xmin, ymin, xmax, ymax;
-  sync sync_mode;
+  texplay_sync sync_mode;
 
   /* pointer to associated texture */
   /* a bit of a kludge having this here
